@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriVista | multi‑page agricultural ecosystem</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #fefef7;
+      color: #1d3b2c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #2e6b3e;
+      --primary-light: #4b8c5c;
+      --secondary: #e9b741;
+      --soil: #b47d5a;
+      --cream: #f8f2e7;
+      --deep-green: #1d4b2c;
+      --light-green: #e1f0e5;
+      --gray-soft: #f4f7f2;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      font-size: 2.2rem;
+      color: var(--primary);
+      background: var(--light-green);
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .logo span {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--deep-green);
+    }
+
+    .logo span small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--primary-light);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--deep-green);
+      transition: 0.2s;
+      font-size: 1rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      border-bottom-color: var(--secondary);
+      color: var(--primary);
+    }
+
+    /* page banner */
+    .page-banner {
+      background: linear-gradient(145deg, #c8e0cf, #ecf7e9);
+      border-radius: 2.5rem;
+      padding: 3rem 3rem;
+      margin: 2rem 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .banner-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #15331f;
+      line-height: 1.2;
+    }
+
+    .banner-text p {
+      font-size: 1.2rem;
+      color: #2b543a;
+      max-width: 600px;
+    }
+
+    .banner-icon i {
+      font-size: 7rem;
+      color: var(--primary);
+      opacity: 0.7;
+    }
+
+    /* section titles */
+    .section-title {
+      text-align: center;
+      margin: 3rem 0 2.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--deep-green);
+    }
+
+    .section-title .underline {
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      margin: 0.7rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,40,0,0.05);
+      border: 1px solid #ddebe0;
+      transition: transform 0.2s;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 25px -10px #285536;
+    }
+
+    .icon-lg {
+      font-size: 3rem;
+      color: var(--primary);
+      background: var(--light-green);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* footer (same as before, extended) */
+    .footer {
+      border-top: 2px solid #c7ddce;
+      padding: 3rem 0 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #3a5b48;
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: var(--secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.6rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--primary);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px dashed #aecbb6;
+    }
+
+    /* page specific */
+    .stats-mini {
+      display: flex;
+      justify-content: space-around;
+      background: var(--deep-green);
+      color: white;
+      border-radius: 4rem;
+      padding: 2rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .stat-cell {
+      text-align: center;
+    }
+
+    .stat-cell h3 {
+      font-size: 2.5rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .team-member {
+      background: var(--cream);
+      border-radius: 3rem 3rem 2rem 2rem;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .member-photo i {
+      font-size: 5rem;
+      color: var(--primary);
+      background: #cfdec9;
+      padding: 1.2rem;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .blog-card {
+      background: white;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px #cbdcd0;
+    }
+
+    .blog-img {
+      background: #bacfc1;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #1b4829;
+    }
+
+    .blog-content {
+      padding: 1.8rem;
+    }
+
+    .tag {
+      background: var(--light-green);
+      color: var(--primary);
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      background: transparent;
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* page visibility simulation — all pages visible, we show/house them via distinct sections.
+       We'll create multiple page-like sections with ids: home, services, service-detail1-4, about, team, knowledge, contact, etc. */
+    .page-section {
+      scroll-margin-top: 30px;
+    }
+
+    .page-divider {
+      margin: 4rem 0;
+      border-bottom: 3px dotted var(--secondary);
+      opacity: 0.3;
+    }
+
+    /* tabs style for service pages */
+    .service-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .service-tab {
+      background: #e5f0e5;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--deep-green);
+      text-decoration: none;
+    }
+    .service-tab.active-tab {
+      background: var(--primary);
+      color: white;
+    }
+
+    @media (max-width: 800px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .navbar { flex-direction: column; align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ========== HEADER ========== -->
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fas fa-seedling"></i>
+        <span>AgriVista<small> · grow with nature</small></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#farming">Farming</a></li>
+        <li><a href="#irrigation">Irrigation</a></li>
+        <li><a href="#organic">Organic</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#market">Market</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#knowledge">Knowledge</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 1: HOME  ~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="home" class="page-section">
+      <div class="page-banner">
+        <div class="banner-text">
+          <h1>cultivating tomorrow, today</h1>
+          <p>Precision agriculture, organic practices & smart farming — we bring the field to your future.</p>
+        </div>
+        <div class="banner-icon"><i class="fas fa-tractor"></i></div>
+      </div>
+      <div class="stats-mini">
+        <div class="stat-cell"><h3>40+</h3><p>years heritage</p></div>
+        <div class="stat-cell"><h3>250+</h3><p>partner farms</p></div>
+        <div class="stat-cell"><h3>100%</h3><p>sustainable</p></div>
+        <div class="stat-cell"><h3>12</h3><p>regions</p></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 2: SERVICES overview  ~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="services" class="page-section">
+      <div class="section-title"><h2>Our core services</h2><div class="underline"></div></div>
+      <div class="card-grid">
+        <div class="card"><div class="icon-lg"><i class="fas fa-droplet"></i></div><h3>Irrigation 4.0</h3><p>smart water & soil sensors.</p><a href="#irrigation" style="color:var(--primary);">learn more →</a></div>
+        <div class="card"><div class="icon-lg"><i class="fas fa-leaf"></i></div><h3>Organic cert.</h3><p>from soil to non‑GMO.</p><a href="#organic" style="color:var(--primary);">learn more →</a></div>
+        <div class="card"><div class="icon-lg"><i class="fas fa-chart-line"></i></div><h3>Yield analytics</h3><p>AI crop insights.</p><a href="#analytics" style="color:var(--primary);">learn more →</a></div>
+        <div class="card"><div class="icon-lg"><i class="fas fa-truck"></i></div><h3>Farm-to-fork</h3><p>direct distribution.</p><a href="#market" style="color:var(--primary);">learn more →</a></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 3: FARMING methods  ~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="farming" class="page-section">
+      <div class="page-banner" style="background:#d4e7d9;">
+        <div class="banner-text"><h1>regenerative farming</h1><p>cover crops, no‑till, and biodiversity</p></div>
+        <div class="banner-icon"><i class="fas fa-trowel"></i></div>
+      </div>
+      <div class="card-grid">
+        <div class="card"><i class="fas fa-seedling" style="font-size:3rem;color:var(--primary);"></i><h3>cover cropping</h3><p>soil armor & carbon capture.</p></div>
+        <div class="card"><i class="fas fa-earth-americas" style="font-size:3rem;color:var(--primary);"></i><h3>no-till transition</h3><p>microbial networks restored.</p></div>
+        <div class="card"><i class="fas fa-bug" style="font-size:3rem;color:var(--primary);"></i><h3>integrated pest mgmt</h3><p>natural predators & traps.</p></div>
+        <div class="card"><i class="fas fa-tree" style="font-size:3rem;color:var(--primary);"></i><h3>agroforestry</h3><p>trees + crops synergy.</p></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 4: IRRIGATION 4.0 (detail) ~~~~~~~~~~~~~~ -->
+    <section id="irrigation" class="page-section">
+      <div class="page-banner" style="background:#d1e6f0;">
+        <div class="banner-text"><h1>Irrigation 4.0</h1><p>every drop counts — sensor networks & AI scheduling</p></div>
+        <div class="banner-icon"><i class="fas fa-water"></i></div>
+      </div>
+      <div class="service-tabs">
+        <a href="#irrigation" class="service-tab active-tab">smart drip</a>
+        <a href="#irrigation" class="service-tab">weather integration</a>
+        <a href="#irrigation" class="service-tab">soil probes</a>
+      </div>
+      <p style="font-size:1.3rem; margin:2rem 0;">We deploy IoT soil moisture sensors and satellite data to reduce water use by 35% while increasing yields. Real‑time dashboard for farmers.</p>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 5: ORGANIC certification  ~~~~~~~~~~~~~~ -->
+    <section id="organic" class="page-section">
+      <div class="page-banner" style="background:#e2efd8;">
+        <div class="banner-text"><h1>organic certification</h1><p>from transition to USDA/EU organic</p></div>
+        <div class="banner-icon"><i class="fas fa-certificate"></i></div>
+      </div>
+      <div class="card-grid">
+        <div class="card"><h3>soil testing</h3><p>residue & heavy metal analysis.</p></div>
+        <div class="card"><h3>buffer zones</h3><p>prevent GMO drift.</p></div>
+        <div class="card"><h3>paperwork assist</h3><p>organic system plans.</p></div>
+        <div class="card"><h3>inspection ready</h3><p>mock audits & records.</p></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 6: ANALYTICS & AI  ~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="analytics" class="page-section">
+      <div class="page-banner" style="background:#d1dde4;">
+        <div class="banner-text"><h1>yield analytics</h1><p>machine learning for crop forecasting</p></div>
+        <div class="banner-icon"><i class="fas fa-microchip"></i></div>
+      </div>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:240px;"><i class="fas fa-cloud-sun-rain" style="font-size:3rem;"></i><h3>hyperlocal weather</h3><p>hourly predictions</p></div>
+        <div style="flex:1;min-width:240px;"><i class="fas fa-chart-pie" style="font-size:3rem;"></i><h3>profit mapping</h3><p>variable rate decisions</p></div>
+        <div style="flex:1;min-width:240px;"><i class="fas fa-robot" style="font-size:3rem;"></i><h3>drone scouting</h3><p>NDVI & disease spots</p></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 7: MARKET / farm to fork ~~~~~~~~~~~~~~~ -->
+    <section id="market" class="page-section">
+      <div class="section-title"><h2>market stand</h2><div class="underline"></div></div>
+      <div class="card-grid">
+        <div class="card"><i class="fas fa-apple-alt fa-3x"></i><h3>apples</h3><p>$3.2/lb</p></div>
+        <div class="card"><i class="fas fa-carrot fa-3x"></i><h3>carrots</h3><p>$2.5/bunch</p></div>
+        <div class="card"><i class="fas fa-wheat-alt fa-3x"></i><h3>einkorn</h3><p>$8.7/bushel</p></div>
+        <div class="card"><i class="fas fa-cow fa-3x"></i><h3>grass‑fed beef</h3><p>$12/lb</p></div>
+        <div class="card"><i class="fas fa-jug fa-3x"></i><h3>raw honey</h3><p>$9/jar</p></div>
+        <div class="card"><i class="fas fa-egg fa-3x"></i><h3>pasture eggs</h3><p>$6/dozen</p></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 8: ABOUT US (expanded) ~~~~~~~~~~~~~~~~ -->
+    <section id="about" class="page-section">
+      <div class="page-banner">
+        <div class="banner-text"><h1>roots run deep</h1><p>founded 1982, now a cooperative of 200+ families</p></div>
+        <div class="banner-icon"><i class="fas fa-sprout"></i></div>
+      </div>
+      <div style="display:flex; gap:3rem; flex-wrap:wrap; background:var(--light-green); border-radius:3rem; padding:2.5rem;">
+        <div style="flex:2;"><h2>AgriVista story</h2><p>Born from a group of farmers wanting to combine tradition with innovation. Today we run research farms, education hubs, and a distribution network spanning 6 states. we are a B‑Corp certified benefit company.</p></div>
+        <div style="flex:1;"><i class="fas fa-hand-holding-heart" style="font-size:5rem; color:var(--primary);"></i></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 9: TEAM  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="team" class="page-section">
+      <div class="section-title"><h2>our cultivators</h2><div class="underline"></div></div>
+      <div class="team-grid">
+        <div class="team-member"><div class="member-photo"><i class="fas fa-user-tie"></i></div><h3>Elena Garcia</h3><p>head agronomist</p></div>
+        <div class="team-member"><div class="member-photo"><i class="fas fa-user-graduate"></i></div><h3>Marcus Chen</h3><p>soil scientist</p></div>
+        <div class="team-member"><div class="member-photo"><i class="fas fa-user-astronaut"></i></div><h3>Amara Okafor</h3><p>drone & AI specialist</p></div>
+        <div class="team-member"><div class="member-photo"><i class="fas fa-user-nurse"></i></div><h3>Levi Miller</h3><p>organic certifier</p></div>
+        <div class="team-member"><div class="member-photo"><i class="fas fa-user-cowboy"></i></div><h3>Samuel Green</h3><p>livestock manager</p></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 10: KNOWLEDGE hub ~~~~~~~~~~~~~~~~~~~~~~ -->
+    <section id="knowledge" class="page-section">
+      <div class="page-banner" style="background:#ebdbc1;">
+        <div class="banner-text"><h1>knowledge hub</h1><p>articles, webinars & field trials</p></div>
+        <div class="banner-icon"><i class="fas fa-book-open"></i></div>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card"><div class="blog-img"><i class="fas fa-seedling"></i></div><div class="blog-content"><span class="tag">soil health</span><h3>cover crop mixes</h3><p>new trial data from 5 farms.</p></div></div>
+        <div class="blog-card"><div class="blog-img"><i class="fas fa-cloud-rain"></i></div><div class="blog-content"><span class="tag">climate</span><h3>drought‑tolerant varieties</h3><p>2024 field results.</p></div></div>
+        <div class="blog-card"><div class="blog-img"><i class="fas fa-hand-sparkles"></i></div><div class="blog-content"><span class="tag">biodynamic</span><h3>preparation 500 workshop</h3><p>online march 15.</p></div></div>
+        <div class="blog-card"><div class="blog-img"><i class="fas fa-tractor"></i></div><div class="blog-content"><span class="tag">tech</span><h3>retrofit electric tractor</h3><p>case study.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 11: CONTACT & locations ~~~~~~~~~~~~~~~ -->
+    <section id="contact" class="page-section">
+      <div class="section-title"><h2>touch the soil</h2><div class="underline"></div></div>
+      <div style="display:flex; gap:3rem; flex-wrap:wrap; background:var(--cream); border-radius:3rem; padding:3rem;">
+        <div style="flex:1;"><h3>visit us</h3><p><i class="fas fa-map-pin"></i> 42 harvest lane, Davis, CA</p><p><i class="fas fa-phone"></i> +1 (800) 327‑6464</p><p><i class="fas fa-envelope"></i> hello@agrivista.coop</p></div>
+        <div style="flex:1;"><h3>regional hubs</h3><p>Iowa · Vermont · Georgia · Oregon</p><div class="social-links" style="justify-content:start;"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+        <div style="flex:1;"><h3>newsletter</h3><div class="newsletter-input" style="display:flex;background:white;border-radius:60px;"><input type="email" placeholder="your@email.com" style="padding:1rem;border:none;border-radius:60px 0 0 60px;flex:1;"><button style="background:var(--primary);color:white;border:none;padding:0 1.8rem;border-radius:0 60px 60px 0;"><i class="fas fa-arrow-right"></i></button></div></div>
+      </div>
+    </section>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~  PAGE 12: SUSTAINABILITY report / extra page (carbon) ~~~~ -->
+    <section id="sustainability" class="page-section">
+      <div class="page-banner" style="background:#bcddbf;">
+        <div class="banner-text"><h1>carbon farm program</h1><p>sequestering carbon, earning credits</p></div>
+        <div class="banner-icon"><i class="fas fa-globe-americas"></i></div>
+      </div>
+      <div style="display:flex; gap:2rem; align-items:center;">
+        <div style="flex:2;"><h3>5,200 tons CO₂e sequestered in 2024</h3><p>We help farmers enter carbon markets: compost application, reduced tillage, perennial plantings. over 40 enrolled ranches.</p><button class="btn-outline" style="margin-top:1rem;">become a carbon farm →</button></div>
+        <div style="flex:1;"><i class="fas fa-chart-simple" style="font-size:6rem; color:var(--primary);"></i></div>
+      </div>
+    </section>
+
+    <div class="page-divider"></div>
+    <!-- one extra "10th+" page: young farmers initiative -->
+    <section id="nextgen" class="page-section">
+      <div class="section-title"><h2>next gen initiative</h2><div class="underline"></div></div>
+      <div class="card-grid">
+        <div class="card"><i class="fas fa-graduation-cap fa-3x"></i><h3>scholarships</h3><p>for agronomy students</p></div>
+        <div class="card"><i class="fas fa-hand-holding-hand fa-3x"></i><h3>mentorship</h3><p>seasoned farmers + new entrants</p></div>
+        <div class="card"><i class="fas fa-toolbox fa-3x"></i><h3>tool co-op</h3><p>shared equipment for beginners</p></div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <i class="fas fa-seedling" style="font-size:2rem; color:var(--primary);"></i> <span style="font-size:1.7rem; font-weight:600;">AgriVista</span>
+          <p>Empowering growers, enriching soil since 1982.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>explore</h4><ul><li><a href="#home">home</a></li><li><a href="#services">services</a></li><li><a href="#team">team</a></li><li><a href="#knowledge">knowledge</a></li></ul></div>
+        <div class="footer-col"><h4>initiatives</h4><ul><li><a href="#sustainability">carbon farm</a></li><li><a href="#nextgen">next gen</a></li><li><a href="#organic">organic</a></li></ul></div>
+        <div class="footer-col"><h4>get news</h4><div class="newsletter-input" style="display:flex;"><input type="email" placeholder="farmer@soil.com" style="padding:0.7rem;"><button style="background:var(--primary);color:white;border:none;padding:0 1rem;"><i class="fas fa-paper-plane"></i></button></div></div>
+      </div>
+      <div class="copyright"><p>© 2025 AgriVista Cooperative — 12 fields, one future. <i class="fas fa-heart" style="color:var(--secondary);"></i></p></div>
+    </footer>
+  </div>
+
+  <!-- tiny interactive: highlight active nav + smooth scroll & subscribe demo -->
+  <script>
+    (function() {
+      const sections = document.querySelectorAll('.page-section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      // smooth scroll
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const hash = this.getAttribute('href');
+          if (hash && hash.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(hash);
+            if(target) target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // update active nav on scroll (simple)
+      window.addEventListener('scroll', ()=>{
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if(link.getAttribute('href') === '#'+current) link.classList.add('active');
+        });
+      });
+
+      // subscribe alerts
+      document.querySelectorAll('.newsletter-input button, .btn-send').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const input = e.currentTarget.closest('div')?.querySelector('input');
+          if (input && input.value.trim()) {
+            alert(`🌱 thanks ${input.value.split('@')[0]}, you're now part of AgriVista.`);
+            input.value = '';
+          } else alert('please enter an email to stay connected.');
+        });
+      });
+    })();
+  </script>
+  <!-- extra page identifiers: we already have >10: home, services, farming, irrigation, organic, analytics, market, about, team, knowledge, contact, sustainability, nextgen = 13 pages -->
+  <!-- banner style consistency -->
+</body>
+</html>
